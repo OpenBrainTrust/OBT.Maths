@@ -27,54 +27,97 @@
  Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage.
  
 ### Physics Constants
- Physics constants, stored as decimal for high precision, excepting Planck Temperature and Planck Time, which use float since the Exponent values are so large. Pulled from the NIST-accepted values.
+ Physics constants, stored as decimal for high precision, excepting Planck Temperature and Planck Time, which use float since the Exponent values are so large. Pulled from the NIST-accepted values, most of the good ones are here.
  
- | Constant Name | Symbol |
- | ------------- | ------ |
- | AbsZero | C |
- | AbsZero | F |
- | AbsoluteEntropy | STP |
- | AbsoluteEntropy | Atm |
- | AngstromStar  |
- | AtomicMass | mu | 
- | Avogadro | NA |
- | BohrMagneton | μB |
- | BohrMagnetonIneVPerT | μB |
- | BohrRadius | a0 |
- | Boltzmann | kB |
- | ClassicalElectronRadius | re |
- | ConductanceQuantum | G0 |
- | ConductanceQuantumIneSquaredPerJoule | G0 |
- | Coulomb | ke |
- | DeuteronMass | md |
- | EfimovFactor |   |
- | ElectronGFactor | ge |
- | ElectronMagneticMoment | μe |
- | ElectronMass | me |
- | ElectronProtonMassRatio | memp |
- | ElectronNeutronMassRatio | memn |
- | ElementaryCharge | e |
- | FaradayConstant | F |
- | FermiCouplingConstant | GF |
- | FineStructureConstant | α |
- | FirstRadiationConstant | c1 |
- | FirstRadiationConstantSpectral | c1L |
- | GasConstant | R |
- | GravitationalConstant | G |
- | HartreeEnergy | Eh |
- | HydrogenMass | mH |
- | HyperfineTransitionFrequencyCesium133 | ΔνCs |
- | InverseConductanceQuantum | G0Inv |
- | InverseFineStructureConstant | αInv |
- | JosephsonConstant | KJ |
- | LoschmidtConstant | n0 |
- | LuminousEfficacy | Kcd |
- | MagneticFluxQuantum | Φ0 |
- | MagneticFluxQuantumIneSquaredPerJoule | Φ0 |
- | MagneticMomentOfElectron | μe |
- | MagneticMomentOfNeutron | μn |
- | MagneticMomentOfProton | μp |
- | MolarGasConstant | R |
+ | Constant Name                        | Symbol                                     |
+ | ------------------------------------ | ------------------------------------------ |
+ | Absolute Zero, Celsius               | AbsZero_C                                  |
+ | Absolute Zero, Fahrenheit            | AbsZero_F                                  |
+ | Absolute Entropy, STP                | AbsoluteEntropy_STP                        |
+ | Absolute Entropy, 1 Atm              | AbsoluteEntropy_Atm                        |
+ | Angstrom Star                        | AngstromStar                               |
+ | Atomic Mass                          | AtomicMass_mu                              |
+ | Avogadro's Number                    | Avogadro_NA                                |
+ | Bohr Magneton                        | BohrMagneton_μB                            |
+ | Bohr Magneton                        | BohrMagnetonIneVPerT_μB                    |
+ | Bohr Radius                          | BohrRadius_a0                              |
+ | Boltzmann                            | Boltzmann_kB                               |
+ | Classical Electron Radius            | ClassicalElectronRadius_re                 |
+ | Conductance Quantum                  | ConductanceQuantum_G0                      |
+ | Conductance Quantum (e^2/Joule)      | ConductanceQuantumIneSquaredPerJoule_G0    |
+ | Coulomb                              | Coulomb_ke                                 |
+ | Deuteron Mass                        | DeuteronMass_md                            |
+ | Efimov Factor                        | EfimovFactor_                              |
+ | Electron G Factor                    | ElectronGFactor_ge                         |
+ | Electron Magnetic Moment             | ElectronMagneticMoment_μe                  |
+ | Electron Mass                        | ElectronMass_me                            |
+ | Electron-Proton Mass Ratio           | ElectronProtonMassRatio_memp               |
+ | Electron-Neutron Mass Ratio          | ElectronNeutronMassRatio_memn              |
+ | Elementary Charge                    | ElementaryCharge_e                         |
+ | Faraday Constant                     | Faraday_F                                  |
+ | Fermi Coupling Constant              | FermiCoupling_GF                           |
+ | Fine Structure Constant              | FineStructure_α                            |
+ | First Radiation Constant             | FirstRadiation_c1                          |
+ | First Radiation Constant (Spectral)  | FirstRadiationSpectral_c1L                 |
+ | Gravitational Constant               | Gravitational_G                            |
+ | Hartree Energy                       | HartreeEnergy_Eh                           |
+ | Hydrogen Mass                        | HydrogenMass_mH                            |
+ | Hyperfine Transition Frequency Cs133 | HyperfineTransitionFrequencyCesium133_ΔνCs |
+ | Inverse Conductance Quantum          | InverseConductanceQuantum_G0Inv            |
+ | Inverse Fine Structure Constant      | InverseFineStructureConstant_αInv          |
+ | Josephson Constant                   | Josephson_KJ                               |
+ | Loschmidt Constant                   | Loschmidt_n0                               |
+ | Luminous Efficacy (Ideal Source)     | LuminousEfficacy_Kcd                       |
+ | Magnetic Flux Quantum                | MagneticFluxQuantum_Φ0                     |
+ | Magnetic Flux Quantum (e^2/Joule)    | MagneticFluxQuantumIneSquaredPerJoule_Φ0   |
+ | Magnetic Moment of Electron          | MagneticMomentOfElectron_μe                |
+ | Magnetic Moment of Neutron           | MagneticMomentOfNeutron_μn                 |
+ | Magnetic Moment of Proton            | MagneticMomentOfProton_μp                  |
+ | Molar Gas Constant                   | MolarGas_R                                 |
+ | Molar Mass                           | MolarMass_Mu                               |
+ | Molar Mass Of Carbon-12              | MolarMassOfCarbon12_M12C                   |
+ | Molar Planck Constant                | MolarPlanckConstant_NAh                    |
+ | Muon Compton Wavelength              | MuonComptonWavelength_λCμ                  |
+ | Muon Electron Mass Ratio             | MuonElectronMassRatio_mμme                 |
+ | Muon Magnetic Moment                 | MuonMagneticMoment_μμ                      |
+ | Muon Mass                            | MuonMass_mμ                                |
+ | Muon Mass Energy Equivalent          | MuonMassEnergyEquivalent_mμc2              |
+ | Muon Mass Inu                        | MuonMassInu_mμu                            |
+ | Muon Molar Mass                      | MuonMolarMass_Mμ                           |
+ | Molar Volume Of Ideal Gas (Atm)      | MolarVolumeOfIdealGas_Vm_Atm               |
+ | Molar Volume Of Ideal Gas (STP)      | MolarVolumeOfIdealGas_Vm_STP               |
+ | Muon Proton Mass Ratio               | MuonProtonMassRatio_mμmp                   |
+ | Neutron Electron Mass Ratio          | NeutronElectronMassRatio_mnme              |
+ | Neutron Magnetic Moment              | NeutronMagneticMoment_μn                   |
+ | Neutron Proton Mass Ratio            | NeutronProtonMassRatio_mnmp                |
+ | Neutron Mass                         | NeutronMass_mn                             |
+ | Nuclear Magneton                     | NuclearMagneton_μN                         |
+ | Planck Constant                      | PlanckConstant_h                           |
+ | Planck Constant Reduced              | PlanckConstantReduced_ħ                    |
+ | Planck Length                        | PlanckLength_lP                            |
+ | Planck Mass                          | PlanckMass_mP                              |
+ | Planck Temperature                   | PlanckTemperature_TP                       |
+ | Planck Time                          | PlanckTime_tP                              |
+ | Proton Electron Mass Ratio           | ProtonElectronMassRatio_mpme               |
+ | Proton Mass                          | ProtonMass_mp                              |
+ | Proton Neutron Mass Ratio            | ProtonNeutronMassRatio_mpmn                |
+ | Proton Magnetic Moment               | ProtonMagneticMoment_μp                    |
+ | Quantum Of Circulation               | QuantumOfCirculation_Γ                     |
+ | Rydberg Constant                     | RydbergConstant_Rꚙ                         |
+ | Rydberg Constant Times C in Hz       | RydbergConstantTimesCinHz_Rꚙc              |
+ | Rydberg Energy Equivalent            | RydbergEnergyEquivalent_Rꚙhc               |
+ | Rydberg Energy Equivalent in eV      | RydbergEnergyEquivalentIneV_Rꚙhc           |
+ | Second Radiation Constant            | SecondRadiationConstant_c2                 |
+ | Speed Of Light                       | SpeedOfLight_c                             |
+ | Standard Atmosphere                  | StandardAtmosphere_atm                     |
+ | Standard State Pressure              | StandardStatePressure_Pa                   |
+ | Stefan Boltzmann Constant            | StefanBoltzmannConstant_σ                  |
+ | Vacuum Impedance                     | VacuumImpedance_Z0                         |
+ | Vacuum Permeability                  | VacuumPermeability_μ0                      |
+ | Vacuum Permittivity                  | VacuumPermittivity_ε0                      |
+ | Von Klitzing Constant                | VonKlitzingConstant_RK                     |
+ | Weak Mixing Angle                    | WeakMixingAngle_θW                         |
+ | Wien Displacement Constant           | WienDisplacementConstant_b                 |
  
 ## MathsF
  Library of Maths functions. Static class so it can be accessed anywhere in your solution.
