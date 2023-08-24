@@ -1307,7 +1307,7 @@ namespace OBT.Maths {
         /// <param name="baseValue">The decimal base value to calculate the log by.</param>
         /// <returns>The Log(n) of the given value, as a decimal.</returns>
         /// <exception cref="ArgumentException">Thrown when the input value is negative. </exception>
-        public static decimal Log( decimal value, decimal baseValue ) {
+        public static decimal LogN( decimal value, decimal baseValue ) {
             return Log(value) / Log(baseValue);
         }
 
@@ -1319,7 +1319,7 @@ namespace OBT.Maths {
         /// <param name="value">The double value to calculate the log of.</param>
         /// <param name="baseValue">The base value to calculate the log by.</param>
         /// <returns>The Log(n) of the given value, as a double.</returns>
-        public static double Log( double value, double baseValue ) {
+        public static double LogN( double value, double baseValue ) {
             return Log(value) / Log(baseValue);
         }
 
@@ -1331,7 +1331,7 @@ namespace OBT.Maths {
         /// <param name="value">The float value to calculate the log of.</param>
         /// <param name="baseValue">The base value to calculate the log by.</param>
         /// <returns>The Log(n) of the given value, as a float.</returns>
-        public static float Log( float value, float baseValue ) {
+        public static float LogN( float value, float baseValue ) {
             return Log(value) / Log(baseValue);
         }
 

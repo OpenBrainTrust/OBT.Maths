@@ -14,12 +14,12 @@
 ### Extension Methods
  Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage. Most constants are stored as a decimal, so these extension methods make it shorter to code the return type you want.
  
- * *ToDouble(decimal)*
- * *ToDouble(float)* 
- * *ToFloat(decimal)*
- * *ToFloat(double)*
- * *ToDecimal(double)*
- * *ToDecimal(float)*
+ * *decimal.ToDouble()*
+ * *float.ToDouble()* 
+ * *decimal.ToFloat()*
+ * *double.ToFloat()*
+ * *double.ToDecimal()*
+ * *float.ToDecimal()*
  
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
 
@@ -140,6 +140,41 @@
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
  
 ## MathsF
- Library of Maths functions. Static class so it can be accessed anywhere in your solution.
-   
+ Library of Maths functions. Static class so it can be accessed anywhere in your solution. Most functions can return float, decimal and double.
+    
+ * *Derivative()*
+ * *PartialDerivative()* 
+ * *Sqrt()* - Custom method for Decimal Square Root. Others use standard libraries.
+ * *Log()* - Custom method for Decimal Natural Log.
+ * *LogN()* - Custom method for Decimal Log(n).
+ * *Log10()* - Custom method for Decimal Log10. 
+ * *Log2()* - Custom method for Decimal Log2. 
+ * *Sigmoid()*
+ * *SigmoidMultivariate()*
+ * *Logit()*
+ * *LogitMultivariate()*
+ * *ReLU()*
+ * *ReLUMultivariate()*
+ * *LeakyReLU()*
+ * *LeakyReLUMultivariate()*
+ * *Tanh()*
+ * *TanhMultivariate()*
+ * *Softmax()*
+ 
+ * *MeanSquaredError()*
+ * *MeanBiasError()*
+ * *MeanAbsoluteError()*
+ * *CrossEntropyError()*
+ * *HingeLoss()*
+ * *HuberLoss()*
+ * *KullbackLieblerDivergence()*
+ * *LogCoshLoss()*
+ * *PoissonLoss()*
+ * *QuantileLoss()*
+ * *RootMeanSquareError()*
+ * *TripletLoss()*
+ 
+ * *CalculateLucasNumber()*
+ * *GetFibonacciNumber()*
+ 
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths)
