@@ -13,6 +13,8 @@
 
 ### Extension Methods
  Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage.
+  
+ [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
 
 ### Constants
  Constants not found in the standard Math or Mathf libraries, stored as decimal for high precision.
@@ -32,6 +34,8 @@
  | 11. Euler-Mascheroni  | _γ                  | 24. √3                   | _Root3  |
  | 12. Conway's          | _λ_Conway           | 25. √5                   | _Root5  |
  | 13. Golomb-Dickman    | _λ_GolombDickman    | 26. Apéry’s              | _ζ3     |
+  
+ [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
  
 ### Physics Constants
  Physics constants, stored as decimal for high precision, excepting Planck Temperature and Planck Time, which use float since the Exponent values are so large. Pulled from the NIST-accepted values, most of the good ones are here.
@@ -71,7 +75,7 @@
  | 31.  Hydrogen Mass                        | HydrogenMass_mH                            |
  | 32.  Hyperfine Transition Frequency Cs133 | HyperfineTransitionFrequencyCesium133_ΔνCs |
  | 33.  Inverse Conductance Quantum          | InverseConductanceQuantum_G0Inv            |
- | 34.  Inverse Fine Structure Constant      | InverseFineStructureConstant_αInv          |
+ | 34.  Inverse Fine Structure Constant      | InverseFineStructure_αInv                  |
  | 35.  Josephson Constant                   | Josephson_KJ                               |
  | 36.  Loschmidt Constant                   | Loschmidt_n0                               |
  | 37.  Luminous Efficacy (Ideal Source)     | LuminousEfficacy_Kcd                       |
@@ -83,7 +87,7 @@
  | 43.  Molar Gas Constant                   | MolarGas_R                                 |
  | 44.  Molar Mass                           | MolarMass_Mu                               |
  | 45.  Molar Mass Of Carbon-12              | MolarMassOfCarbon12_M12C                   |
- | 46.  Molar Planck Constant                | MolarPlanckConstant_NAh                    |
+ | 46.  Molar Planck Constant                | MolarPlanck_NAh                            |
  | 47.  Muon Compton Wavelength              | MuonComptonWavelength_λCμ                  |
  | 48.  Muon Electron Mass Ratio             | MuonElectronMassRatio_mμme                 |
  | 49.  Muon Magnetic Moment                 | MuonMagneticMoment_μμ                      |
@@ -99,8 +103,8 @@
  | 59.  Neutron Proton Mass Ratio            | NeutronProtonMassRatio_mnmp                |
  | 60.  Neutron Mass                         | NeutronMass_mn                             |
  | 61.  Nuclear Magneton                     | NuclearMagneton_μN                         |
- | 62.  Planck Constant                      | PlanckConstant_h                           |
- | 63.  Planck Constant Reduced              | PlanckConstantReduced_ħ                    |
+ | 62.  Planck Constant                      | Planck_h                                   |
+ | 63.  Planck Constant Reduced              | PlanckReduced_ħ                            |
  | 64.  Planck Length                        | PlanckLength_lP                            |
  | 65.  Planck Mass                          | PlanckMass_mP                              |
  | 66.  Planck Temperature                   | PlanckTemperature_TP                       |
@@ -110,11 +114,11 @@
  | 70.  Proton Neutron Mass Ratio            | ProtonNeutronMassRatio_mpmn                |
  | 71.  Proton Magnetic Moment               | ProtonMagneticMoment_μp                    |
  | 72.  Quantum Of Circulation               | QuantumOfCirculation_Γ                     |
- | 73.  Rydberg Constant                     | RydbergConstant_Rꚙ                         |
- | 74.  Rydberg Constant Times C in Hz       | RydbergConstantTimesCinHz_Rꚙc              |
+ | 73.  Rydberg Constant                     | Rydberg_Rꚙ                                 |
+ | 74.  Rydberg Constant Times C in Hz       | RydbergTimesCinHz_Rꚙc                      |
  | 75.  Rydberg Energy Equivalent            | RydbergEnergyEquivalent_Rꚙhc               |
  | 76.  Rydberg Energy Equivalent in eV      | RydbergEnergyEquivalentIneV_Rꚙhc           |
- | 77.  Second Radiation Constant            | SecondRadiationConstant_c2                 |
+ | 77.  Second Radiation Constant            | SecondRadiation_c2                         |
  | 78.  Speed Of Light                       | SpeedOfLight_c                             |
  | 79.  Standard Atmosphere                  | StandardAtmosphere_atm                     |
  | 80.  Standard State Pressure              | StandardStatePressure_Pa                   |
@@ -124,7 +128,7 @@
  | 84.  Vacuum Permittivity                  | VacuumPermittivity_ε0                      |
  | 85.  Von Klitzing Constant                | VonKlitzingConstant_RK                     |
  | 86.  Weak Mixing Angle                    | WeakMixingAngle_θW                         |
- | 87.  Wien Displacement Constant           | WienDisplacementConstant_b                 |
+ | 87.  Wien Displacement Constant           | WienDisplacement_b                 |
  
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
  
