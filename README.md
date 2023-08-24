@@ -2,9 +2,9 @@
  A library for Maths of all kinds, WIP.
  
  * [Maths](https://github.com/OpenBrainTrust/OBT.Maths#maths)
- ..* [Extension Methods](https://github.com/OpenBrainTrust/OBT.Maths#extension-methods)
- ..* [Constants](https://github.com/OpenBrainTrust/OBT.Maths#constants)
- ..* [Physics Constants](https://github.com/OpenBrainTrust/OBT.Maths#physics-constants)
+ ** [Extension Methods](https://github.com/OpenBrainTrust/OBT.Maths#extension-methods)
+ ** [Constants](https://github.com/OpenBrainTrust/OBT.Maths#constants)
+ ** [Physics Constants](https://github.com/OpenBrainTrust/OBT.Maths#physics-constants)
  
  * [MathsF](https://github.com/OpenBrainTrust/OBT.Maths#mathsf) 
 
