@@ -26,5 +26,55 @@
 ### Extension Methods
  Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage.
  
+### Physics Constants
+ Physics constants, stored as decimal for high precision, excepting Planck Temperature and Planck Time, which use float since the Exponent values are so large. Pulled from the NIST-accepted values.
+ 
+ | Constant Name | Symbol |
+ | ------------- | ------ |
+ | AbsZero | C |
+ | AbsZero | F |
+ | AbsoluteEntropy | STP |
+ | AbsoluteEntropy | Atm |
+ | AngstromStar  |
+ | AtomicMass | mu | 
+ | Avogadro | NA |
+ | BohrMagneton | μB |
+ | BohrMagnetonIneVPerT | μB |
+ | BohrRadius | a0 |
+ | Boltzmann | kB |
+ | ClassicalElectronRadius | re |
+ | ConductanceQuantum | G0 |
+ | ConductanceQuantumIneSquaredPerJoule | G0 |
+ | Coulomb | ke |
+ | DeuteronMass | md |
+ | EfimovFactor |   |
+ | ElectronGFactor | ge |
+ | ElectronMagneticMoment | μe |
+ | ElectronMass | me |
+ | ElectronProtonMassRatio | memp |
+ | ElectronNeutronMassRatio | memn |
+ | ElementaryCharge | e |
+ | FaradayConstant | F |
+ | FermiCouplingConstant | GF |
+ | FineStructureConstant | α |
+ | FirstRadiationConstant | c1 |
+ | FirstRadiationConstantSpectral | c1L |
+ | GasConstant | R |
+ | GravitationalConstant | G |
+ | HartreeEnergy | Eh |
+ | HydrogenMass | mH |
+ | HyperfineTransitionFrequencyCesium133 | ΔνCs |
+ | InverseConductanceQuantum | G0Inv |
+ | InverseFineStructureConstant | αInv |
+ | JosephsonConstant | KJ |
+ | LoschmidtConstant | n0 |
+ | LuminousEfficacy | Kcd |
+ | MagneticFluxQuantum | Φ0 |
+ | MagneticFluxQuantumIneSquaredPerJoule | Φ0 |
+ | MagneticMomentOfElectron | μe |
+ | MagneticMomentOfNeutron | μn |
+ | MagneticMomentOfProton | μp |
+ | MolarGasConstant | R |
+ 
 ## MathsF
  Library of Maths functions. Static class so it can be accessed anywhere in your solution.
