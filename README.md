@@ -1,9 +1,10 @@
 # OBT.Maths
  A library for Maths of all kinds, WIP.
 
-##Maths
+## Maths
+ Static class so it can be accessed anywhere in your solution.
 
-###Constants
+### Constants
  Constants stored at highest precision available, *decimal*. 
  
  | Constant Name        | Symbol              | Constant Name           | Symbol  |
@@ -22,8 +23,8 @@
  | 12 Conway's          | _λ_Conway           | 25 √5                   | _Root5  |
  | 13 Golomb-Dickman    | _λ_GolombDickman    | 26 ζ(3)                 | _ζ3     |
  
-###Extension Methods
+### Extension Methods
  Extension methods for conversion to or from float, double, and decimal types.
  
-##MathsF
- Library of Maths functions.
+## MathsF
+ Library of Maths functions. Static class so it can be accessed anywhere in your solution.
