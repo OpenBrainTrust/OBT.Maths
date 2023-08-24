@@ -1,8 +1,18 @@
 # OBT.Maths
  A library for Maths of all kinds, WIP.
+ 
+ * [Maths](https://github.com/OpenBrainTrust/OBT.Maths#maths)
+ ..* [Extension Methods](https://github.com/OpenBrainTrust/OBT.Maths#extension-methods)
+ ..* [Constants](https://github.com/OpenBrainTrust/OBT.Maths#constants)
+ ..* [Physics Constants](https://github.com/OpenBrainTrust/OBT.Maths#physics-constants)
+ 
+ * [MathsF](https://github.com/OpenBrainTrust/OBT.Maths#mathsf) 
 
 ## Maths
  Static class so it can be accessed anywhere in your solution.
+
+### Extension Methods
+ Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage.
 
 ### Constants
  Constants not found in the standard Math or Mathf libraries, stored as decimal for high precision.
@@ -22,9 +32,6 @@
  | 11. Euler-Mascheroni  | _γ                  | 24. √3                   | _Root3  |
  | 12. Conway's          | _λ_Conway           | 25. √5                   | _Root5  |
  | 13. Golomb-Dickman    | _λ_GolombDickman    | 26. Apéry’s              | _ζ3     |
- 
-### Extension Methods
- Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage.
  
 ### Physics Constants
  Physics constants, stored as decimal for high precision, excepting Planck Temperature and Planck Time, which use float since the Exponent values are so large. Pulled from the NIST-accepted values, most of the good ones are here.
