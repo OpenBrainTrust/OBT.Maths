@@ -21,7 +21,7 @@
  | 10 Catalan           | _G                  | 23 √2                   | _Root2  |
  | 11 Euler-Mascheroni  | _γ                  | 24 √3                   | _Root3  |
  | 12 Conway's          | _λ_Conway           | 25 √5                   | _Root5  |
- | 13 Golomb-Dickman    | _λ_GolombDickman    | 26 ζ(3)                 | _ζ3     |
+ | 13 Golomb-Dickman    | _λ_GolombDickman    | 26 Riemann Zeta(3)      | _ζ3     |
  
 ### Extension Methods
  Extension methods for conversion to or from float, double, and decimal types.
