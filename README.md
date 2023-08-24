@@ -126,9 +126,7 @@
  | Weak Mixing Angle                    | WeakMixingAngle_θW                         |
  | Wien Displacement Constant           | WienDisplacementConstant_b                 |
  
- <div style="text-align: right">[Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths)</div>
-
- 
+ [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
  
 ## MathsF
  Library of Maths functions. Static class so it can be accessed anywhere in your solution.
