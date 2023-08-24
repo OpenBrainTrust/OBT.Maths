@@ -12,8 +12,15 @@
  Static class so it can be accessed anywhere in your solution.
 
 ### Extension Methods
- Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage.
-  
+ Extension methods for conversion between float, double, and decimal types. Standard _value.ToType()_ usage. Most constants are stored as a decimal, so these extension methods make it shorter to code the return type you want.
+ 
+ * *ToDouble(decimal)*
+ * *ToDouble(float)* 
+ * *ToFloat(decimal)*
+ * *ToFloat(double)*
+ * *ToDecimal(double)*
+ * *ToDecimal(float)*
+ 
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
 
 ### Constants
