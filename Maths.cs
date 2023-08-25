@@ -92,6 +92,8 @@ namespace OBT.Maths {
         /// </summary>
         public const decimal _E = 1.60669515241529176378330152319092458m;
 
+        public const decimal _e = 2.71828182845904523536028747135266249m;
+
         /// <summary>
         /// <para>G: Catalan's constant
         /// </para><para>Catalan's constant G is a mathematical constant with significance in number theory and analysis.
@@ -199,7 +201,15 @@ namespace OBT.Maths {
         /// Beyond its visual appeal, Phi has intriguing connections in mathematics, including its appearance in the solution to the quadratic equation, continued fractions, and various geometric shapes.
         /// </para>
         /// </summary>
-        public const decimal _φ = 1.6180339887498948482045868343656m;
+        public const decimal _Φ = 1.6180339887498948482045868343656m;
+
+        /// <summary>
+        /// <para>Inverse Golden Ratio
+        /// </para><para>The inverse golden ratio is the reciprocal of the golden ratio, and is equal to 1/φ.
+        /// </para><para>This is the same as the golden ratio minus one, and is approximately 0.6180339887498948482045868343656...
+        /// </para>
+        /// </summary>
+        public const decimal _φ = 0.6180339887498948482045868343656m;
 
         /// <summary>
         /// <para>ψ (Psi): Reciprocal Fibonacci constant
@@ -1248,6 +1258,52 @@ namespace OBT.Maths {
             return root;
         }
 
+        public static decimal Exp( decimal x ) {
+            return Pow(Maths._e, x);
+        }
+
+        public static double Exp( double x ) {
+            return Math.Exp(x);
+        }
+
+        public static float Exp( float x ) {
+            return Mathf.Exp(x);
+        }
+
+        public static decimal Pow( decimal x, decimal exponent ) {
+            if (exponent == 0) {
+                return 1;
+            }
+
+            decimal result = 1;
+            decimal baseValue = x;
+
+            for (; exponent > 0;) {
+                if (exponent % 2 == 1) {
+                    result *= baseValue;
+                }
+                if (result > decimal.MaxValue / baseValue) {                    
+                    return decimal.MaxValue;
+                }
+
+                if (baseValue > decimal.MaxValue / baseValue) {
+                    return decimal.MaxValue;
+                }
+                baseValue *= baseValue;
+                exponent = decimal.Floor(exponent / 2);
+            }
+
+            return result;
+        }
+
+        public static double Pow( double x, double exponent ) {
+            return Math.Pow(x, exponent);
+        }
+
+        public static float Pow( float x, float exponent ) {
+            return (float)Math.Pow(x, exponent);
+        }
+
         //square root for doubles
         //square root for floats
 
@@ -1648,7 +1704,15 @@ namespace OBT.Maths {
         /// <param name="x">The value to calculate the Tanh of.</param>
         /// <returns>The Tanh of the given value, as a float between -1 and +1.</returns>
         public static float Tanh( float x ) {
-            return (Mathf.Exp(x) - Mathf.Exp(-x)) / (Mathf.Exp(x) + Mathf.Exp(-x));
+            return (Exp(x) - Exp(-x)) / (Exp(x) + Exp(-x));
+        }
+
+        public static double Tanh( double x ) {
+            return (Exp(x) - Exp(-x)) / (Exp(x) + Exp(-x));
+        }
+
+        public static decimal Tanh( decimal x ) {
+            return (Exp(x) - Exp(-x)) / (Exp(x) + Exp(-x));
         }
 
         /// <summary>
@@ -1668,6 +1732,22 @@ namespace OBT.Maths {
             }
             return (Mathf.Exp(sum) - Mathf.Exp(-sum)) / (Mathf.Exp(sum) + Mathf.Exp(-sum));
         }
+
+        public static double TanhMultivariate( double[] x ) {
+            double sum = 0;
+            for (int i = 0; i < x.Length; i++) {
+                sum += x[i];
+            }
+            return (Math.Exp(sum) - Math.Exp(-sum)) / (Math.Exp(sum) + Math.Exp(-sum));
+        }
+
+        public static decimal TanhMultivariate( decimal[] x ) {
+            decimal sum = 0;
+            for (int i = 0; i < x.Length; i++) {
+                sum += x[i];
+            }
+            return (Exp(sum) - Exp(-sum)) / (Exp(sum) + Exp(-sum));
+        }   
 
         /// <summary>
         /// <para>Float Softmax function
@@ -1750,7 +1830,7 @@ namespace OBT.Maths {
         /// </summary>
         /// <param name="input">The array of decimal values to calculate the softmax of.</param>
         /// <returns>The softmax of the given values, as an array of decimals between 0 and 1.</returns>
-        public static decimal Softmax( decimal[] input ) {
+        public static decimal[] Softmax( decimal[] input ) {
             decimal max = decimal.MinValue;
             for (int i = 0; i < input.Length; i++) {
                 if (input[i] > max) {
@@ -1762,13 +1842,13 @@ namespace OBT.Maths {
             decimal sumExp = 0.0m;
 
             for (int i = 0; i < input.Length; i++) {
-                expInput[i] = (decimal)Math.Exp((double)(input[i] - max));
+                expInput[i] = Exp((input[i] - max));
                 sumExp += expInput[i];
             }
 
-            decimal softmaxOutput = 0.0m;
+            decimal[] softmaxOutput = new decimal[input.Length];
             for (int i = 0; i < input.Length; i++) {
-                softmaxOutput = expInput[i] / sumExp;
+                softmaxOutput[i] = expInput[i] / sumExp;
             }
 
             return softmaxOutput;
@@ -1798,7 +1878,7 @@ namespace OBT.Maths {
         public static decimal MeanSquaredError( decimal[] actual, decimal[] expected ) {
             decimal sum = 0.0m;
             for (int i = 0; i < actual.Length; i++) {
-                sum += (decimal)Math.Pow((double)(actual[i] - expected[i]), 2);
+                sum += Pow((actual[i] - expected[i]), 2);
             }
             return sum / actual.Length;
         }
@@ -1870,7 +1950,7 @@ namespace OBT.Maths {
         public static decimal CrossEntropyError( decimal[] actual, decimal[] expected ) {
             decimal sum = 0.0m;
             for (int i = 0; i < actual.Length; i++) {
-                sum += expected[i] * (decimal)Math.Log((double)actual[i]);
+                sum += expected[i] * Log(actual[i]);
             }
             return -sum;
         }
@@ -1957,7 +2037,7 @@ namespace OBT.Maths {
         public static decimal KullbackLeiblerDivergence( decimal[] actual, decimal[] expected ) {
             decimal sum = 0.0m;
             for (int i = 0; i < actual.Length; i++) {
-                sum += expected[i] * (decimal)Math.Log((double)(expected[i] / actual[i]));
+                sum += expected[i] * Log((expected[i] / actual[i]));
             }
             return sum;
         }
@@ -2008,7 +2088,7 @@ namespace OBT.Maths {
         public static decimal PoissonLoss( decimal[] actual, decimal[] expected ) {
             decimal sum = 0.0m;
             for (int i = 0; i < actual.Length; i++) {
-                sum += actual[i] - expected[i] * (decimal)Math.Log((double)actual[i]);
+                sum += actual[i] - expected[i] * Log(actual[i]);
             }
             return sum;
         }
@@ -2076,7 +2156,7 @@ namespace OBT.Maths {
                 decimal diff = actual[i] - expected[i];
                 sum += diff * diff;
             }
-            return (decimal)Math.Sqrt((double)(sum / actual.Length));
+            return Sqrt((sum / actual.Length));
         }
 
         public static float TripletLoss( float[] anchor, float[] positive, float[] negative, float margin ) {
@@ -2155,4 +2235,338 @@ namespace OBT.Maths {
         #endregion
     }
 
+    public static class MathsFourier {
+        #region Sample Rates
+        public enum SampleRate : ulong { 
+            _8kHz = 8000,
+            _11kHz = 11025,
+            _16kHz = 16000,
+            _22kHz = 22050,
+            _44kHz = 44100,
+            _48kHz = 48000,
+            _64kHz = 64000,
+            _88kHz = 88200,
+            _96kHz = 96000,
+            _176kHz = 176400,
+            _192kHz = 192000,
+            _352kHz = 352800,
+            _384kHz = 384000,
+            _FMRadio = 32000,
+            _CDXA = 37800,
+            _NTSC = 44056,
+            _PCMNippon = 47250,
+            _Soundstream = 50000,
+            _X80 = 50400,
+            _SACD = 2822400,
+            _DSD2 = 5644800,
+            _DSD4 = 11289600,
+            _DSD8 = 22579200,
+            _DSD16 = 45158400,
+        }
+        #endregion
+
+        #region Utility
+        /// <summary>
+        /// <para>Frequency to Mel
+        /// </para><para>Converts a frequency to a Mel value. Mel is a psychoacoustic scale of pitch perception.
+        /// </para><para>The Mel value is calculated using the formula: 2595 * log10(1 + frequency / 700).
+        /// </para><para>2595 is the constant used to convert the frequency to Mel, which was found by comparing the pitch of 1000 Hz tone to a tone of 40 dB above the listener's threshold. This allowed the researchers to find the pitch of a tone at 1000 Mel.
+        /// </para><para>For example, a frequency of 1000 Hz is equal to 1000 Mel, while a frequency of 2000 Hz is equal to 1500 Mel.
+        /// </para>
+        /// </summary>
+        /// <param name="frequency">The frequency to convert to Mel.</param>
+        /// <returns>The Mel value of the given frequency.</returns>
+        public static double FrequencyToMel( double frequency ) {
+            return 2595 * Math.Log10(1 + frequency / 700);
+        }
+
+        /// <summary>
+        /// <para>Inverse Mel Scale
+        /// </para><para>Converts a Mel value to a frequency. Mel is a psychoacoustic scale of pitch perception.
+        /// </para>
+        /// </summary>
+        /// <param name="mel">The Mel value to convert to a frequency.</param>
+        /// <returns>The frequency of the given Mel value.</returns>
+        public static double InverseMelScale( double mel ) {
+            return 700 * (Math.Pow(10, mel / 2595) - 1);
+        }
+        #endregion
+
+        //Various FFT functions, including: FFT, IFFT, MFCC, 
+        //Spectrogram functions like Mel Spectrogram, and Power Spectrogram.
+        //FFT functions are based on the FFT functions in the Accord.NET framework.
+        //MFCC functions are based on the MFCC functions in the Accord.NET framework.
+        //These functions are used for audio processing.
+        //They include: FFT, IFFT, MFCC, as well as functions for calculating the power spectrum, and the power spectrum density.
+        //These include the functions: PowerSpectrum, the PowerSpectrumDensity, and the PowerSpectrumDensityDecibel.
+        //Cepstral functions are also included, including: Cepstrum, RealCepstrum, ComplexCepstrum, and the MelCepstrum.
+
+        #region DCT
+        /// <summary>
+        /// <para>Discrete Cosine Transform
+        /// </para><para>Computes the Discrete Cosine Transform (DCT) of the filtered spectrum. Discrete Cosine Transform is a function that transforms a sequence of numbers into a sequence of cosine functions.
+        /// </para>
+        /// </summary>
+        /// <param name="input">The filtered spectrum, after applying the Mel filter bank.</param>
+        /// <param name="numCepstralCoeffs">The number of coefficients to use. Coefficients determine how many MFCCs are calculated.</param>
+        /// <returns>The Discrete Cosine Transform of the filtered spectrum, as an array of doubles.</returns>
+        public static double[] DiscreteCosineTransform( double[] input, int numCepstralCoeffs ) {
+            int numInputSamples = input.Length;
+            double[] dctCoeffs = new double[numCepstralCoeffs];
+            double sqrt2 = Math.Sqrt(2.0);
+
+            for (int k = 0; k < numCepstralCoeffs; k++) {
+                double sum = 0.0;
+                for (int n = 0; n < numInputSamples; n++) {
+                    double multiplier = (k == 0) ? 1.0 / sqrt2 : 1.0;
+                    double angle = Math.PI * k * (2 * n + 1) / (2 * numInputSamples);
+                    sum += input[n] * Math.Cos(angle) * multiplier;
+                }
+                dctCoeffs[k] = sum * Math.Sqrt(2.0 / numInputSamples);
+            }
+            return dctCoeffs;
+        }
+        #endregion
+
+        #region MFCC
+        /// <summary>
+        /// <para>Mel Frequency Cepstral Coefficients
+        /// </para><para>MFCCs are a feature widely used in automatic speech and speaker recognition.
+        /// </para><para>MFCCs are commonly derived as follows:
+        /// </para><para>1. Take the Fourier transform of (a windowed excerpt of) a signal.
+        /// </para><para>2. Map the powers of the spectrum obtained above onto the mel scale, using triangular overlapping windows.
+        /// </para><para>3. Take the logs of the powers at each of the mel frequencies.
+        /// </para><para>4. Take the discrete cosine transform of the list of mel log powers, as if it were a signal.
+        /// </para><para>5. The MFCCs are the amplitudes of the resulting spectrum.
+        /// </para>
+        /// </summary>
+        /// <param name="magnitudeSpectra">The magnitude spectra of the audio samples.</param>
+        /// <param name="filters">The number of filters to use. Filters determine how many MFCCs are calculated.</param>
+        /// <param name="coefficients">The number of coefficients to use. Coefficients determine how many MFCCs are calculated.</param>
+        /// <returns>The Mel Frequency Cepstral Coefficients of the audio samples.</returns>
+        public static double[][] CalculateMFCC( double[][] magnitudeSpectra, int filters, int coefficients ) {
+            int numFrames = magnitudeSpectra.Length;
+            int numFilters = filters;
+            int numCepstralCoeffs = coefficients;
+
+            double[][] mfccCoeffsPerFrame = new double[numFrames][];
+
+            for (int frameIndex = 0; frameIndex < numFrames; frameIndex++) {
+                double[] magnitudeSpectrum = magnitudeSpectra[frameIndex];
+
+                // Calculate the Mel filterbank and triangular windows
+                double[][] filterBank = CalculateMelFilterBank(numFilters, magnitudeSpectrum.Length);
+
+                // Apply the filterbank to the magnitude spectrum
+                double[] filteredSpectrum = ApplyMFCCFilterBank(filterBank, magnitudeSpectrum);
+
+                // Compute the Discrete Cosine Transform (DCT)
+                double[] mfccCoeffs = DiscreteCosineTransform(filteredSpectrum, numCepstralCoeffs);
+
+                mfccCoeffsPerFrame[frameIndex] = mfccCoeffs;
+            }
+            return mfccCoeffsPerFrame;
+        }
+
+        public static double[,] CalculateMFCC( double[,] magnitudeSpectra, int filters, int coefficients ) {
+            int numFrames = magnitudeSpectra.GetLength(0);
+            int numBins = magnitudeSpectra.GetLength(1);
+            int numFilters = filters;
+            int numCepstralCoeffs = coefficients;
+
+            double[,] mfccCoeffsPerFrame = new double[numFrames, numCepstralCoeffs];
+
+            for (int frameIndex = 0; frameIndex < numFrames; frameIndex++) {
+                double[] magnitudeSpectrum = new double[numBins];
+                for (int binIndex = 0; binIndex < numBins; binIndex++) {
+                    magnitudeSpectrum[binIndex] = magnitudeSpectra[frameIndex, binIndex];
+                }
+
+                // Calculate the Mel filterbank and triangular windows
+                double[][] filterBank = CalculateMelFilterBank(numFilters, numBins);
+
+                // Apply the filterbank to the magnitude spectrum
+                double[] filteredSpectrum = ApplyMFCCFilterBank(filterBank, magnitudeSpectrum);
+
+                // Compute the Discrete Cosine Transform (DCT)
+                double[] mfccCoeffs = DiscreteCosineTransform(filteredSpectrum, numCepstralCoeffs);
+
+                for (int coeffIndex = 0; coeffIndex < numCepstralCoeffs; coeffIndex++) {
+                    mfccCoeffsPerFrame[frameIndex, coeffIndex] = mfccCoeffs[coeffIndex];
+                }
+            }
+            return mfccCoeffsPerFrame;
+        }
+
+        /// <summary>
+        /// <para>Mel Filter Bank
+        /// </para><para>Calculates the Mel filter bank, given the number of filters, the FFT size, the sample rate, and the lower frequency.
+        /// </para>
+        /// </summary>
+        /// <param name="numFilters">The number of filters to use. Filters determine how many MFCCs are calculated.</param>
+        /// <param name="fftSize">The FFT size, i.e. the number of samples in the audio samples.</param>
+        /// <param name="sampleRate">The sample rate of the audio samples, i.e. the number of samples per second.</param>
+        /// <param name="lowerFrequency">The lower frequency bound of the audio samples, below which frequencies are ignored.</param>
+        /// <returns>The Mel filter bank, with triangular windows.</returns>
+        public static double[][] CalculateMelFilterBank( int numFilters, int fftSize, int sampleRate = 44100, int lowerFrequency = 0) {
+            double[][] filterBank = new double[numFilters][];
+            int upperFrequency = (int)sampleRate / 2;
+
+            for (int i = 0; i < numFilters; i++) {
+                filterBank[i] = new double[fftSize];
+                double lowerMel = FrequencyToMel(lowerFrequency + i * (upperFrequency - lowerFrequency) / numFilters);
+                double centerMel = FrequencyToMel(lowerFrequency + (i + 1) * (upperFrequency - lowerFrequency) / numFilters);
+                double upperMel = FrequencyToMel(lowerFrequency + (i + 2) * (upperFrequency - lowerFrequency) / numFilters);
+
+                int lowerBin = (int)Math.Floor(InverseMelScale(lowerMel) * fftSize / sampleRate);
+                int centerBin = (int)Math.Floor(InverseMelScale(centerMel) * fftSize / sampleRate);
+                int upperBin = (int)Math.Floor(InverseMelScale(upperMel) * fftSize / sampleRate);
+
+                for (int j = lowerBin; j < centerBin; j++) {
+                    filterBank[i][j] = (j - lowerBin) * 1.0 / (centerBin - lowerBin);
+                }
+                for (int j = centerBin; j < upperBin; j++) {
+                    filterBank[i][j] = (upperBin - j) * 1.0 / (upperBin - centerBin);
+                }
+            }
+            return filterBank;
+        }
+
+        /// <summary>
+        /// <para>Apply Mel Filter Bank
+        /// </para><para>Applies the Mel filter bank to the magnitude spectrum.
+        /// </para><para>Each filter is applied to the magnitude spectrum, and the result is returned.
+        /// </para>
+        /// </summary>
+        /// <param name="filterBank">The Mel filter bank, with triangular windows.</param>
+        /// <param name="magnitudeSpectrum">The magnitude spectrum of the audio samples.</param>
+        /// <returns>The filtered spectrum, after applying the Mel filter bank.</returns>
+        public static double[] ApplyMFCCFilterBank(double[][] filterBank, double[] magnitudeSpectrum) {
+            int numFilters = filterBank.Length;
+            int fftSize = magnitudeSpectrum.Length;
+            double[] filteredSpectrum = new double[numFilters];
+
+            for (int i = 0; i < numFilters; i++) {
+                double filterOutput = 0.0;
+                for (int j = 0; j < fftSize; j++) {
+                    filterOutput += filterBank[i][j] * magnitudeSpectrum[j];
+                }
+                filteredSpectrum[i] = Math.Log(filterOutput + 1e-10); // Apply logarithm
+            }
+            return filteredSpectrum;
+        }
+
+        /// <summary>
+        /// <para>Texture Graph 2D (double)
+        /// </para><para>Creates a Texture2D from the provided 2D Array double[,].
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of double[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        public static Texture2D TextureGraph2D( double[,] data2D, bool alpha = false ) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D textureGraph = new Texture2D(dataWidth, dataHeight);
+
+            for (int frameIndex_x = 0; frameIndex_x < dataWidth; frameIndex_x++) {
+                for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                    float value = (float)data2D[frameIndex_x, bandIndex_y];                    
+                    Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                    textureGraph.SetPixel(frameIndex_x, bandIndex_y, color);
+                }
+            }
+            textureGraph.Apply();
+            return textureGraph;
+        }
+
+        /// <summary>
+        /// <para>Texture Graph 2D (float)
+        /// </para><para>Creates a Texture2D from the provided 2D Array float[,].
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of float[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        public static Texture2D TextureGraph2D( float[,] data2D, bool alpha = false ) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D textureGraph = new Texture2D(dataWidth, dataHeight);
+
+            for (int frameIndex_x = 0; frameIndex_x < dataWidth; frameIndex_x++) {
+                for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                    float value = data2D[frameIndex_x, bandIndex_y];
+                    Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                    textureGraph.SetPixel(frameIndex_x, bandIndex_y, color);
+                }
+            }
+            textureGraph.Apply();
+            return textureGraph;
+        }
+
+
+        /// <summary>
+        /// <para>Update Texture Graph 2D (double)
+        /// </para><para>Updates a given a Texture2D with data from the provided 2D Array double[,]. Shifts the existing pixels to the right, and adds the new data to the left.
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of double[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        /// <returns>The updated Texture2D.</returns>
+        public static Texture2D TextureGraph2D( double[,] data2D, Texture2D existingTexture, bool alpha = false) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D texture = new Texture2D(existingTexture.width, existingTexture.height);
+
+            for (int i = 0, data2D_x = 0; i < existingTexture.width; i++, data2D_x++) {
+                if (i < existingTexture.width - dataWidth) {                
+                    for (int j = 0; j < existingTexture.height; j++) {
+                        Color color = existingTexture.GetPixel(i, j);
+                        texture.SetPixel(i + dataWidth, j, color);
+                    }
+                }
+                if (data2D_x < dataWidth) {
+                    for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                        float value = (float)data2D[data2D_x, bandIndex_y];
+                        Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                        texture.SetPixel(data2D_x, bandIndex_y, color);
+                    }
+                }
+            }
+            texture.Apply();
+            return texture;
+        }
+
+        /// <summary>
+        /// <para>Update Texture Graph 2D (float)
+        /// </para><para>Updates a given a Texture2D with data from the provided 2D Array float[,]. Shifts the existing pixels to the right, and adds the new data to the left.
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of float[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        /// <returns>The updated Texture2D.</returns>
+        public static Texture2D TextureGraph2D( float[,] data2D, Texture2D existingTexture, bool alpha = false) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D texture = new Texture2D(existingTexture.width, existingTexture.height);
+
+            for (int i = 0, data2D_x = 0; i < existingTexture.width; i++, data2D_x++) {
+                if (i < existingTexture.width - dataWidth) {
+                    for (int j = 0; j < existingTexture.height; j++) {
+                        Color color = existingTexture.GetPixel(i, j);
+                        texture.SetPixel(i + dataWidth, j, color);
+                    }
+                }
+                if (data2D_x < dataWidth) {
+                    for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                        float value = data2D[data2D_x, bandIndex_y];
+                        Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                        texture.SetPixel(data2D_x, bandIndex_y, color);
+                    }
+                }
+            }
+            texture.Apply();
+            return texture;
+        }
+
+        #endregion
+    }
 }

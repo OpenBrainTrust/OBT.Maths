@@ -28,19 +28,20 @@
  
  | Constant Name         | Symbol              | Constant Name            | Symbol  |
  | --------------------- | ------------------- | ------------------------ | ------- |
- | 1.  Glaisher-Kinkelin | _A_GlaisherKinkelin | 14. Khinchin's           | _L      |
- | 2.  Mills'            | _A_Mills            | 15. Lieb's Square Ice    | _Lieb   |
- | 3.  Feigenbaum Alpha  | _α                  | 16. Meissel-Mertens      | _M      |
- | 4.  Backhouse's       | _B                  | 17. Ramanujan-Soldner    | _μ      |
- | 5.  Landau-Ramanujan  | _b                  | 18. Omega                | _Ω      |
- | 6.  Cahen's           | _C_Cahen            | 19. Universal Parabolic  | _P      |
- | 7.  Porter's          | _C_Porter           | 20. Phi                  | _φ      |
- | 8.  Feigenbaum Delta  | _δ                  | 21. Reciprocal Fibonacci | _ψ      |
- | 9.  Erdős–Borwein     | _E                  | 22. Plastic Number       | _ρ      |
- | 10. Catalan           | _G                  | 23. √2                   | _Root2  |
- | 11. Euler-Mascheroni  | _γ                  | 24. √3                   | _Root3  |
- | 12. Conway's          | _λ_Conway           | 25. √5                   | _Root5  |
- | 13. Golomb-Dickman    | _λ_GolombDickman    | 26. Apéry’s              | _ζ3     |
+ | 1.  Glaisher-Kinkelin | _A_GlaisherKinkelin | 15. Lieb's Square Ice    | _Lieb   |
+ | 2.  Mills'            | _A_Mills            | 16. Meissel-Mertens      | _M      |
+ | 3.  Feigenbaum Alpha  | _α                  | 17. Ramanujan-Soldner    | _μ      |
+ | 4.  Backhouse's       | _B                  | 18. Omega                | _Ω      |
+ | 5.  Landau-Ramanujan  | _b                  | 19. Universal Parabolic  | _P      |
+ | 6.  Cahen's           | _C_Cahen            | 20. Phi                  | _Φ      |
+ | 7.  Porter's          | _C_Porter           | 21. Inverse Golden Ratio | _φ      |
+ | 8.  Feigenbaum Delta  | _δ                  | 22. Reciprocal Fibonacci | _ψ      |
+ | 9.  Erdős–Borwein     | _E                  | 23. Plastic Number       | _ρ      |
+ | 10. Catalan           | _G                  | 24. √2                   | _Root2  |
+ | 11. Euler-Mascheroni  | _γ                  | 25. √3                   | _Root3  |
+ | 12. Conway's          | _λ_Conway           | 26. √5                   | _Root5  |
+ | 13. Golomb-Dickman    | _λ_GolombDickman    | 27. Apéry’s              | _ζ3     |
+ | 14. Khinchin's        | _L                  |                          |         |
   
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
  
