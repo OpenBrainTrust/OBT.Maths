@@ -179,3 +179,19 @@
  * *GetFibonacciNumber()*
  
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths)
+ 
+ ## MathsFourier
+  Library of functions related to Fast Fourier Transforms, frequency domain functions, methods of visualizing.
+  
+  * *TextureGraph2D()*
+  
+  * *FrequencyToMel()*
+  * *InverseMelScale()*
+  
+  * *DiscreteCosineTransform()*
+  
+  * *CalculateMFCC()*
+  * *CalculateMelFilterBank()*
+  * *ApplyMFCCFilterBank()*
+  
+ [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths)
