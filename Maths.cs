@@ -2265,6 +2265,118 @@ namespace OBT.Maths {
         }
         #endregion
 
+        #region 2D Texture Graphs
+        /// <summary>
+        /// <para>Texture Graph 2D (double)
+        /// </para><para>Creates a Texture2D from the provided 2D Array double[,].
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of double[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        public static Texture2D TextureGraph2D( double[,] data2D, bool alpha = false ) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D textureGraph = new Texture2D(dataWidth, dataHeight);
+
+            for (int frameIndex_x = 0; frameIndex_x < dataWidth; frameIndex_x++) {
+                for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                    float value = (float)data2D[frameIndex_x, bandIndex_y];
+                    Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                    textureGraph.SetPixel(frameIndex_x, bandIndex_y, color);
+                }
+            }
+            textureGraph.Apply();
+            return textureGraph;
+        }
+
+        /// <summary>
+        /// <para>Texture Graph 2D (float)
+        /// </para><para>Creates a Texture2D from the provided 2D Array float[,].
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of float[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        public static Texture2D TextureGraph2D( float[,] data2D, bool alpha = false ) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D textureGraph = new Texture2D(dataWidth, dataHeight);
+
+            for (int frameIndex_x = 0; frameIndex_x < dataWidth; frameIndex_x++) {
+                for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                    float value = data2D[frameIndex_x, bandIndex_y];
+                    Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                    textureGraph.SetPixel(frameIndex_x, bandIndex_y, color);
+                }
+            }
+            textureGraph.Apply();
+            return textureGraph;
+        }
+
+        /// <summary>
+        /// <para>Update Texture Graph 2D (double)
+        /// </para><para>Updates a given a Texture2D with data from the provided 2D Array double[,]. Shifts the existing pixels to the right, and adds the new data to the left.
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of double[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        /// <returns>The updated Texture2D.</returns>
+        public static Texture2D TextureGraph2D( double[,] data2D, Texture2D existingTexture, bool alpha = false ) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D texture = new Texture2D(existingTexture.width, existingTexture.height);
+
+            for (int i = 0, data2D_x = 0; i < existingTexture.width; i++, data2D_x++) {
+                if (i < existingTexture.width - dataWidth) {
+                    for (int j = 0; j < existingTexture.height; j++) {
+                        Color color = existingTexture.GetPixel(i, j);
+                        texture.SetPixel(i + dataWidth, j, color);
+                    }
+                }
+                if (data2D_x < dataWidth) {
+                    for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                        float value = (float)data2D[data2D_x, bandIndex_y];
+                        Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                        texture.SetPixel(data2D_x, bandIndex_y, color);
+                    }
+                }
+            }
+            texture.Apply();
+            return texture;
+        }
+
+        /// <summary>
+        /// <para>Update Texture Graph 2D (float)
+        /// </para><para>Updates a given a Texture2D with data from the provided 2D Array float[,]. Shifts the existing pixels to the right, and adds the new data to the left.
+        /// </para>
+        /// </summary>
+        /// <param name="data2D">The 2D array of float[,] values to visualize.</param>
+        /// <returns>A texture created from the provided 2D Array.</returns>
+        /// <returns>The updated Texture2D.</returns>
+        public static Texture2D TextureGraph2D( float[,] data2D, Texture2D existingTexture, bool alpha = false ) {
+            int dataWidth = data2D.GetLength(0);
+            int dataHeight = data2D.GetLength(1);
+            Texture2D texture = new Texture2D(existingTexture.width, existingTexture.height);
+
+            for (int i = 0, data2D_x = 0; i < existingTexture.width; i++, data2D_x++) {
+                if (i < existingTexture.width - dataWidth) {
+                    for (int j = 0; j < existingTexture.height; j++) {
+                        Color color = existingTexture.GetPixel(i, j);
+                        texture.SetPixel(i + dataWidth, j, color);
+                    }
+                }
+                if (data2D_x < dataWidth) {
+                    for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
+                        float value = data2D[data2D_x, bandIndex_y];
+                        Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
+                        texture.SetPixel(data2D_x, bandIndex_y, color);
+                    }
+                }
+            }
+            texture.Apply();
+            return texture;
+        }
+        #endregion
+
         #region Utility
         /// <summary>
         /// <para>Frequency to Mel
@@ -2344,30 +2456,6 @@ namespace OBT.Maths {
         /// <param name="filters">The number of filters to use. Filters determine how many MFCCs are calculated.</param>
         /// <param name="coefficients">The number of coefficients to use. Coefficients determine how many MFCCs are calculated.</param>
         /// <returns>The Mel Frequency Cepstral Coefficients of the audio samples.</returns>
-        public static double[][] CalculateMFCC( double[][] magnitudeSpectra, int filters, int coefficients ) {
-            int numFrames = magnitudeSpectra.Length;
-            int numFilters = filters;
-            int numCepstralCoeffs = coefficients;
-
-            double[][] mfccCoeffsPerFrame = new double[numFrames][];
-
-            for (int frameIndex = 0; frameIndex < numFrames; frameIndex++) {
-                double[] magnitudeSpectrum = magnitudeSpectra[frameIndex];
-
-                // Calculate the Mel filterbank and triangular windows
-                double[][] filterBank = CalculateMelFilterBank(numFilters, magnitudeSpectrum.Length);
-
-                // Apply the filterbank to the magnitude spectrum
-                double[] filteredSpectrum = ApplyMFCCFilterBank(filterBank, magnitudeSpectrum);
-
-                // Compute the Discrete Cosine Transform (DCT)
-                double[] mfccCoeffs = DiscreteCosineTransform(filteredSpectrum, numCepstralCoeffs);
-
-                mfccCoeffsPerFrame[frameIndex] = mfccCoeffs;
-            }
-            return mfccCoeffsPerFrame;
-        }
-
         public static double[,] CalculateMFCC( double[,] magnitudeSpectra, int filters, int coefficients ) {
             int numFrames = magnitudeSpectra.GetLength(0);
             int numBins = magnitudeSpectra.GetLength(1);
@@ -2455,118 +2543,6 @@ namespace OBT.Maths {
             }
             return filteredSpectrum;
         }
-
-        /// <summary>
-        /// <para>Texture Graph 2D (double)
-        /// </para><para>Creates a Texture2D from the provided 2D Array double[,].
-        /// </para>
-        /// </summary>
-        /// <param name="data2D">The 2D array of double[,] values to visualize.</param>
-        /// <returns>A texture created from the provided 2D Array.</returns>
-        public static Texture2D TextureGraph2D( double[,] data2D, bool alpha = false ) {
-            int dataWidth = data2D.GetLength(0);
-            int dataHeight = data2D.GetLength(1);
-            Texture2D textureGraph = new Texture2D(dataWidth, dataHeight);
-
-            for (int frameIndex_x = 0; frameIndex_x < dataWidth; frameIndex_x++) {
-                for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
-                    float value = (float)data2D[frameIndex_x, bandIndex_y];                    
-                    Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
-                    textureGraph.SetPixel(frameIndex_x, bandIndex_y, color);
-                }
-            }
-            textureGraph.Apply();
-            return textureGraph;
-        }
-
-        /// <summary>
-        /// <para>Texture Graph 2D (float)
-        /// </para><para>Creates a Texture2D from the provided 2D Array float[,].
-        /// </para>
-        /// </summary>
-        /// <param name="data2D">The 2D array of float[,] values to visualize.</param>
-        /// <returns>A texture created from the provided 2D Array.</returns>
-        public static Texture2D TextureGraph2D( float[,] data2D, bool alpha = false ) {
-            int dataWidth = data2D.GetLength(0);
-            int dataHeight = data2D.GetLength(1);
-            Texture2D textureGraph = new Texture2D(dataWidth, dataHeight);
-
-            for (int frameIndex_x = 0; frameIndex_x < dataWidth; frameIndex_x++) {
-                for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
-                    float value = data2D[frameIndex_x, bandIndex_y];
-                    Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
-                    textureGraph.SetPixel(frameIndex_x, bandIndex_y, color);
-                }
-            }
-            textureGraph.Apply();
-            return textureGraph;
-        }
-
-
-        /// <summary>
-        /// <para>Update Texture Graph 2D (double)
-        /// </para><para>Updates a given a Texture2D with data from the provided 2D Array double[,]. Shifts the existing pixels to the right, and adds the new data to the left.
-        /// </para>
-        /// </summary>
-        /// <param name="data2D">The 2D array of double[,] values to visualize.</param>
-        /// <returns>A texture created from the provided 2D Array.</returns>
-        /// <returns>The updated Texture2D.</returns>
-        public static Texture2D TextureGraph2D( double[,] data2D, Texture2D existingTexture, bool alpha = false) {
-            int dataWidth = data2D.GetLength(0);
-            int dataHeight = data2D.GetLength(1);
-            Texture2D texture = new Texture2D(existingTexture.width, existingTexture.height);
-
-            for (int i = 0, data2D_x = 0; i < existingTexture.width; i++, data2D_x++) {
-                if (i < existingTexture.width - dataWidth) {                
-                    for (int j = 0; j < existingTexture.height; j++) {
-                        Color color = existingTexture.GetPixel(i, j);
-                        texture.SetPixel(i + dataWidth, j, color);
-                    }
-                }
-                if (data2D_x < dataWidth) {
-                    for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
-                        float value = (float)data2D[data2D_x, bandIndex_y];
-                        Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
-                        texture.SetPixel(data2D_x, bandIndex_y, color);
-                    }
-                }
-            }
-            texture.Apply();
-            return texture;
-        }
-
-        /// <summary>
-        /// <para>Update Texture Graph 2D (float)
-        /// </para><para>Updates a given a Texture2D with data from the provided 2D Array float[,]. Shifts the existing pixels to the right, and adds the new data to the left.
-        /// </para>
-        /// </summary>
-        /// <param name="data2D">The 2D array of float[,] values to visualize.</param>
-        /// <returns>A texture created from the provided 2D Array.</returns>
-        /// <returns>The updated Texture2D.</returns>
-        public static Texture2D TextureGraph2D( float[,] data2D, Texture2D existingTexture, bool alpha = false) {
-            int dataWidth = data2D.GetLength(0);
-            int dataHeight = data2D.GetLength(1);
-            Texture2D texture = new Texture2D(existingTexture.width, existingTexture.height);
-
-            for (int i = 0, data2D_x = 0; i < existingTexture.width; i++, data2D_x++) {
-                if (i < existingTexture.width - dataWidth) {
-                    for (int j = 0; j < existingTexture.height; j++) {
-                        Color color = existingTexture.GetPixel(i, j);
-                        texture.SetPixel(i + dataWidth, j, color);
-                    }
-                }
-                if (data2D_x < dataWidth) {
-                    for (int bandIndex_y = 0; bandIndex_y < dataHeight; bandIndex_y++) {
-                        float value = data2D[data2D_x, bandIndex_y];
-                        Color color = alpha ? Color.Lerp(Color.clear, Color.white, value) : Color.Lerp(Color.black, Color.white, value);
-                        texture.SetPixel(data2D_x, bandIndex_y, color);
-                    }
-                }
-            }
-            texture.Apply();
-            return texture;
-        }
-
         #endregion
     }
 }
