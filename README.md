@@ -33,15 +33,15 @@
  | 3.  Feigenbaum Alpha  | _α                  | 17. Ramanujan-Soldner    | _μ      |
  | 4.  Backhouse's       | _B                  | 18. Omega                | _Ω      |
  | 5.  Landau-Ramanujan  | _b                  | 19. Universal Parabolic  | _P      |
- | 6.  Cahen's           | _C_Cahen            | 20. Phi                  | _Φ      |
- | 7.  Porter's          | _C_Porter           | 21. Inverse Golden Ratio | _φ      |
- | 8.  Feigenbaum Delta  | _δ                  | 22. Reciprocal Fibonacci | _ψ      |
- | 9.  Erdős–Borwein     | _E                  | 23. Plastic Number       | _ρ      |
- | 10. Catalan           | _G                  | 24. √2                   | _Root2  |
- | 11. Euler-Mascheroni  | _γ                  | 25. √3                   | _Root3  |
- | 12. Conway's          | _λ_Conway           | 26. √5                   | _Root5  |
- | 13. Golomb-Dickman    | _λ_GolombDickman    | 27. Apéry’s              | _ζ3     |
- | 14. Khinchin's        | _L                  |                          |         |
+ | 6.  Cahen's           | _C_Cahen            | 20. Pi                   | _π      |
+ | 7.  Porter's          | _C_Porter           | 21. Phi                  | _Φ      |
+ | 8.  Feigenbaum Delta  | _δ                  | 22. Inverse Golden Ratio | _φ      |
+ | 9.  Erdős–Borwein     | _E                  | 23. Reciprocal Fibonacci | _ψ      |
+ | 10. Catalan           | _G                  | 24. Plastic Number       | _ρ      |
+ | 11. Euler-Mascheroni  | _γ                  | 25. √2                   | _Root2  |
+ | 12. Conway's          | _λ_Conway           | 26. √3                   | _Root3  |
+ | 13. Golomb-Dickman    | _λ_GolombDickman    | 27. √5                   | _Root5  |
+ | 14. Khinchin's        | _L                  | 28. Apéry’s              | _ζ3     |
   
  [Top](https://github.com/OpenBrainTrust/OBT.Maths#obtmaths) 
  
