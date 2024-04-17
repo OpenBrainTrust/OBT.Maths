@@ -2545,4 +2545,84 @@ namespace OBT.Maths {
         }
         #endregion
     }
+
+    public struct Qubit {
+        private Complex alpha;
+        private Complex beta;
+
+        public Qubit( Complex alpha, Complex beta ) {
+            this.alpha = alpha;
+            this.beta = beta;
+            Normalize();
+        }
+
+        public Qubit( double alpha, double beta )
+            : this(new Complex(alpha, 0), new Complex(beta, 0)) {
+        }
+
+        private void Normalize() {
+            double norm = Math.Sqrt(alpha.Magnitude * alpha.Magnitude + beta.Magnitude * beta.Magnitude);
+            alpha = alpha / new Complex(norm, 0);
+            beta = beta / new Complex(norm, 0);
+        }
+
+        public void ApplyGate( Complex[,] gate ) {
+            Complex newAlpha = gate[0, 0] * alpha + gate[0, 1] * beta;
+            Complex newBeta = gate[1, 0] * alpha + gate[1, 1] * beta;
+            alpha = newAlpha;
+            beta = newBeta;
+        }
+
+        public (double, double) Measure() {
+            double probZero = alpha.Magnitude * alpha.Magnitude;
+            double probOne = beta.Magnitude * beta.Magnitude;
+            double randomValue = new System.Random().NextDouble();
+
+            if (randomValue < probZero) {
+                alpha = new Complex(1, 0);
+                beta = new Complex(0, 0);
+                return (1, 0);
+            } else {
+                alpha = new Complex(0, 0);
+                beta = new Complex(1, 0);
+                return (0, 1);
+            }
+        }
+    }
+
+    public struct Complex {
+        public double Real { get; }
+        public double Imaginary { get; }
+
+        public double Magnitude => Math.Sqrt(Real * Real + Imaginary * Imaginary);
+        public double Argument => Math.Atan2(Imaginary, Real);
+
+        public Complex( double real, double imaginary ) {
+            Real = real;
+            Imaginary = imaginary;
+        }
+
+        public static Complex operator +( Complex a, Complex b ) {
+            return new Complex(a.Real + b.Real, a.Imaginary + b.Imaginary);
+        }
+
+        public static Complex operator -( Complex a, Complex b ) {
+            return new Complex(a.Real - b.Real, a.Imaginary - b.Imaginary);
+        }
+
+        public static Complex operator *( Complex a, Complex b ) {
+            return new Complex(a.Real * b.Real - a.Imaginary * b.Imaginary,
+                               a.Real * b.Imaginary + a.Imaginary * b.Real);
+        }
+
+        public static Complex operator /( Complex a, Complex b ) {
+            double denominator = b.Real * b.Real + b.Imaginary * b.Imaginary;
+            return new Complex((a.Real * b.Real + a.Imaginary * b.Imaginary) / denominator,
+                               (a.Imaginary * b.Real - a.Real * b.Imaginary) / denominator);
+        }
+
+        public override string ToString() {
+            return $"{Real} + {Imaginary}i";
+        }
+    }
 }
